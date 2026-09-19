@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PackageAdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Form Gönderim Sonrası Dönüşüm Sayfası
 Route::get('/tesekkurler', [HomeController::class, 'thankYou'])->name('thank-you');
+
+// Arama Niyetine Özel Hizmet İniş Sayfaları (IP Kamera, Solar Kamera, Montaj Servisi)
+Route::get('/ip-kamera-sistemleri', fn () => app(ServiceController::class)->show('ip-kamera-sistemleri'))->name('service.ip');
+Route::get('/solar-kamera-sistemleri', fn () => app(ServiceController::class)->show('solar-kamera-sistemleri'))->name('service.solar');
+Route::get('/guvenlik-kamerasi-montaji', fn () => app(ServiceController::class)->show('guvenlik-kamerasi-montaji'))->name('service.installation');
 
 // Müşteri Teklif ve Arama Talepleri
 Route::post('/teklif-al', [LeadController::class, 'store'])->name('lead.store');
@@ -27,10 +33,18 @@ Route::get('/hatay/{slug}', [RegionController::class, 'show'])->name('district.s
 // Dinamik XML Sitemap (Google ve Arama Motorları İçin)
 Route::get('/sitemap.xml', function () {
     $districts = array_keys(config('camera_site.districts', []));
+    $services = array_keys(config('camera_site.services', []));
+
     $xml = '<?xml version="1.0" encoding="UTF-8"?>';
     $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     $xml .= '<url><loc>'.url('/').'</loc><changefreq>daily</changefreq><priority>1.0</priority></url>';
 
+    // Hizmet Sayfaları
+    foreach ($services as $service) {
+        $xml .= '<url><loc>'.url('/'.$service).'</loc><changefreq>daily</changefreq><priority>0.9</priority></url>';
+    }
+
+    // İlçe Sayfaları
     foreach ($districts as $district) {
         $xml .= '<url><loc>'.url('/'.$district.'-guvenlik-kamerasi').'</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>';
     }

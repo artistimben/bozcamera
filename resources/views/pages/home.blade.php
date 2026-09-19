@@ -86,9 +86,15 @@
                     
                     <!-- Görsel Üst Banner -->
                     <div class="relative h-44 rounded-2xl overflow-hidden mb-6 bg-slate-900 group">
-                        <img src="{{ asset('images/camera-hero.jpg') }}" 
-                             alt="Boztech Bilişim Güvenlik Kamerası Montajı" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <picture>
+                            <source srcset="{{ asset('images/camera-hero.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/camera-hero.jpg') }}" 
+                                 alt="Boztech Bilişim Güvenlik Kamerası Montajı Hatay" 
+                                 width="600" height="350"
+                                 fetchpriority="high"
+                                 decoding="async"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        </picture>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent"></div>
                         <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs">
                             <span class="font-bold tracking-tight">Hatay Geneli Gezici Servis</span>
@@ -181,16 +187,27 @@
             <div class="group rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/40 hover:bg-white hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="{{ asset('images/mobile-app-preview.jpg') }}" alt="Telefondan Canlı Kamera İzleme" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <picture>
+                            <source srcset="{{ asset('images/mobile-app-preview.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/mobile-app-preview.jpg') }}" 
+                                 alt="Telefondan Canlı Kamera İzleme" 
+                                 loading="lazy" decoding="async"
+                                 width="400" height="240"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </picture>
                         <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-slate-900 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
                             📱 Canlı İzleme
                         </span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-extrabold text-base text-slate-950 mb-2">Telefondan 7/24 Canlı İzleme</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">
                             iOS ve Android cihazlarınızdan mekanınızı canlı izleyin, geçmiş kayıtları tek dokunuşla geriye sarıp izleyin.
                         </p>
+                        <a href="{{ route('service.ip') }}" class="text-xs font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
+                            <span>IP Kamera Detayları</span>
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
                 <div class="px-6 pb-6 pt-0 text-[11px] font-bold text-blue-600">
@@ -202,16 +219,27 @@
             <div class="group rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/40 hover:bg-white hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="{{ asset('images/camera-kit.jpg') }}" alt="Kamera Seti ve Donanımları" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <picture>
+                            <source srcset="{{ asset('images/camera-kit.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/camera-kit.jpg') }}" 
+                                 alt="Kamera Seti ve Donanımları" 
+                                 loading="lazy" decoding="async"
+                                 width="400" height="240"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </picture>
                         <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-slate-900 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
                             📦 Eksiksiz Set
                         </span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-extrabold text-base text-slate-950 mb-2">Anahtar Teslim Komple Set</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">
                             Full HD ve 4K kameralar, NVR/DVR kayıt cihazı, 7/24 güvenlik sınıfı sabit disk, buat ve kaliteli bakır kablolar.
                         </p>
+                        <a href="{{ route('home') }}#paketler" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 inline-flex items-center gap-1">
+                            <span>Paket Fiyatlarını İncele</span>
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
                 <div class="px-6 pb-6 pt-0 text-[11px] font-bold text-emerald-600">
@@ -223,16 +251,27 @@
             <div class="group rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/40 hover:bg-white hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="{{ asset('images/technician-install.jpg') }}" alt="Profesyonel Kamera Montajı" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <picture>
+                            <source srcset="{{ asset('images/technician-install.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/technician-install.jpg') }}" 
+                                 alt="Profesyonel Kamera Montajı" 
+                                 loading="lazy" decoding="async"
+                                 width="400" height="240"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </picture>
                         <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-slate-900 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
                             🛠️ Titiz İşçilik
                         </span>
                     </div>
                     <div class="p-6">
                         <h3 class="font-extrabold text-base text-slate-950 mb-2">Gizli Kablolama & Estetik Montaj</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">
                             Kabloları estetik kanal ve borulamalar ile gizleyerek dış cepheye veya iç dekora zarar vermeden kurulum yapıyoruz.
                         </p>
+                        <a href="{{ route('service.installation') }}" class="text-xs font-bold text-slate-800 hover:text-blue-600 inline-flex items-center gap-1">
+                            <span>Montaj ve Servis Hizmeti</span>
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
                 <div class="px-6 pb-6 pt-0 text-[11px] font-bold text-slate-700">
@@ -240,24 +279,35 @@
                 </div>
             </div>
 
-            <!-- 4. Dış Ortam & Gece Görüşü -->
+            <!-- 4. Dış Ortam & Solar Kamera -->
             <div class="group rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/40 hover:bg-white hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between">
                 <div>
                     <div class="h-48 overflow-hidden relative bg-slate-100">
-                        <img src="{{ asset('images/camera-hero.jpg') }}" alt="Gece Görüşlü Dış Ortam Kamerası" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <picture>
+                            <source srcset="{{ asset('images/camera-hero.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/camera-hero.jpg') }}" 
+                                 alt="Gece Görüşlü Dış Ortam Kamerası" 
+                                 loading="lazy" decoding="async"
+                                 width="400" height="240"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </picture>
                         <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-slate-900 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-200 shadow-xs">
-                            🌧️ IP67 Dayanıklı
+                            ☀️ 4G Solar & IP67
                         </span>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-extrabold text-base text-slate-950 mb-2">Hatay İklimine Dayanıklı Gövde</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Yaz sıcağı, nem ve toza dayanıklı gövde; zifiri karanlıkta dahi plaka ve yüz netliği sunan akıllı gece görüşü.
+                        <h3 class="font-extrabold text-base text-slate-950 mb-2">Tarla & Çiftlik Solar Kamera</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-3">
+                            Elektriksiz narenciye bahçeleri ve araziler için güneş panelli, 4G SIM kartlı canlı izleme sistemleri.
                         </p>
+                        <a href="{{ route('service.solar') }}" class="text-xs font-bold text-amber-600 hover:text-amber-700 inline-flex items-center gap-1">
+                            <span>Solar Kamera Detayları</span>
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
                 <div class="px-6 pb-6 pt-0 text-[11px] font-bold text-amber-600">
-                    Akıllı Renkli Gece Görüşü
+                    Elektriksiz & İnternetsiz Alanlar
                 </div>
             </div>
         </div>

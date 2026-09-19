@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>{{ $pageTitle ?? 'Hatay Güvenlik Kamerası Satış & Montajı' }}</title>
-    <meta name="description" content="{{ $metaDescription ?? 'Hatay ve tüm ilçelerinde güvenlik kamerası satışı, montajı ve arıza servisi. Şeffaf fiyatlar, aynı gün ücretsiz keşif ve 2 yıl garanti.' }}">
+    <title>{{ $pageTitle ?? 'Hatay Güvenlik Kamerası & Montajı | Aynı Gün Keşif - Boztech' }}</title>
+    <meta name="description" content="{{ $metaDescription ?? 'Hatay genelinde ev, iş yeri ve bahçeler için profesyonel güvenlik kamerası kurulumu. 2 yıl değişim garantisi, yerinde ücretsiz keşif. Hemen arayın: 0545 565 85 83.' }}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,12 +14,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-    <!-- Open Graph / Sosyal Medya -->
+    <!-- Open Graph / Sosyal Medya & WhatsApp Önizlemesi -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ $pageTitle ?? 'Hatay Güvenlik Kamerası Satış & Montajı' }}">
-    <meta property="og:description" content="{{ $metaDescription ?? 'Hatay ve tüm ilçelerinde güvenlik kamerası satışı ve profesyonel montaj.' }}">
+    <meta property="og:title" content="{{ $pageTitle ?? 'Hatay Güvenlik Kamerası & Montajı | Aynı Gün Keşif - Boztech' }}">
+    <meta property="og:description" content="{{ $metaDescription ?? 'Hatay ve tüm ilçelerinde güvenlik kamerası satışı, montajı ve arıza servisi. 2 yıl garanti, yerinde ücretsiz keşif.' }}">
     <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="{{ config('camera_site.company_name') }}">
+    <meta property="og:image" content="{{ asset('images/camera-hero.webp') }}">
+    <meta property="og:image:secure_url" content="{{ asset('images/camera-hero.webp') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Boztech Güvenlik Kamerası Hatay">
     <meta property="og:locale" content="tr_TR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageTitle ?? 'Hatay Güvenlik Kamerası Satış & Montajı | Boztech' }}">
+    <meta name="twitter:description" content="{{ $metaDescription ?? 'Hatay ve tüm ilçelerinde güvenlik kamerası satışı ve profesyonel montaj.' }}">
+    <meta name="twitter:image" content="{{ asset('images/camera-hero.webp') }}">
 
     <!-- Google Ads / GTM Script Hook -->
     @if(config('camera_site.google_ads.id'))
@@ -32,41 +44,102 @@
     </script>
     @endif
 
-    <!-- Schema.org LocalBusiness & SecuritySystemInstaller JSON-LD -->
+    <!-- Schema.org Zengin Yapılandırılmış Veri (LocalBusiness, Service, Offer, FAQPage) -->
     <script type="application/ld+json">
     {!! json_encode([
-        '@context' => 'https://schema.org',
-        '@type' => 'SecuritySystemInstaller',
-        'name' => config('camera_site.company_name'),
-        'image' => asset('images/camera-hero.jpg'),
-        'telephone' => config('camera_site.phone'),
-        'url' => url('/'),
-        'priceRange' => '₺₺',
-        'address' => [
-            '@type' => 'PostalAddress',
-            'streetAddress' => 'Dörtyol Merkez',
-            'addressLocality' => 'Dörtyol',
-            'addressRegion' => 'Hatay',
-            'postalCode' => '31600',
-            'addressCountry' => 'TR',
-        ],
-        'geo' => [
-            '@type' => 'GeoCoordinates',
-            'latitude' => '36.8407',
-            'longitude' => '36.2256',
-        ],
-        'openingHoursSpecification' => [
-            '@type' => 'OpeningHoursSpecification',
-            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-            'opens' => '08:30',
-            'closes' => '20:30',
-        ],
-        'areaServed' => array_values(array_map(fn($d) => $d['name'], config('camera_site.districts', []))),
-        'aggregateRating' => [
-            '@type' => 'AggregateRating',
-            'ratingValue' => '4.9',
-            'reviewCount' => '192',
-        ],
+        chr(64).'context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'SecuritySystemInstaller',
+                '@id' => url('/') . '#business',
+                'name' => config('camera_site.company_name'),
+                'alternateName' => config('camera_site.short_name'),
+                'image' => asset('images/camera-hero.webp'),
+                'telephone' => config('camera_site.phone'),
+                'email' => config('camera_site.email'),
+                'url' => url('/'),
+                'priceRange' => '₺₺',
+                'paymentAccepted' => 'Nakit, Kredi Kartı, Havale/EFT',
+                'currenciesAccepted' => 'TRY',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => 'Dörtyol Merkez',
+                    'addressLocality' => 'Dörtyol',
+                    'addressRegion' => 'Hatay',
+                    'postalCode' => '31600',
+                    'addressCountry' => 'TR',
+                ],
+                'geo' => [
+                    '@type' => 'GeoCoordinates',
+                    'latitude' => 36.8407,
+                    'longitude' => 36.2256,
+                ],
+                'openingHoursSpecification' => [
+                    [
+                        '@type' => 'OpeningHoursSpecification',
+                        'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        'opens' => '08:30',
+                        'closes' => '20:30',
+                    ]
+                ],
+                'areaServed' => array_values(array_map(fn($d) => [
+                    '@type' => 'AdministrativeArea',
+                    'name' => $d['name'] . ', Hatay',
+                ], config('camera_site.districts', []))),
+                'aggregateRating' => [
+                    '@type' => 'AggregateRating',
+                    'ratingValue' => '4.9',
+                    'reviewCount' => '192',
+                    'bestRating' => '5',
+                    'worstRating' => '1',
+                ],
+            ],
+            [
+                '@type' => 'Service',
+                '@id' => url('/') . '#service',
+                'serviceType' => 'Güvenlik Kamerası Satış, Montaj ve Teknik Servis',
+                'provider' => ['@id' => url('/') . '#business'],
+                'areaServed' => 'Hatay',
+                'hasOfferCatalog' => [
+                    '@type' => 'OfferCatalog',
+                    'name' => 'Güvenlik Kamera Paketleri & Montaj',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'Offer',
+                            'itemOffered' => [
+                                '@type' => 'Service',
+                                'name' => 'Full HD & IP Kamera Montajı'
+                            ],
+                            'priceCurrency' => 'TRY',
+                            'price' => '450',
+                            'availability' => 'https://schema.org/InStock'
+                        ],
+                        [
+                            '@type' => 'Offer',
+                            'itemOffered' => [
+                                '@type' => 'Service',
+                                'name' => 'Hatay Yerinde Ücretsiz Keşif'
+                            ],
+                            'priceCurrency' => 'TRY',
+                            'price' => '0',
+                            'availability' => 'https://schema.org/InStock'
+                        ]
+                    ]
+                ]
+            ],
+            [
+                '@type' => 'FAQPage',
+                '@id' => url()->current() . '#faq',
+                'mainEntity' => array_map(fn($f) => [
+                    '@type' => 'Question',
+                    'name' => $f['q'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $f['a']
+                    ]
+                ], $faqs ?? config('camera_site.general_faqs', []))
+            ]
+        ]
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 
@@ -95,7 +168,7 @@
         </div>
     </aside>
 
-    <!-- ANA HEADER & NAVİGASYON (Minimalist, Apple & Stripe Ferahlığı) -->
+    <!-- ANA HEADER & NAVİGASYON (Açılır Menüler ve Modern Arayüz) -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-100 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo & Marka -->
@@ -114,11 +187,50 @@
             </a>
 
             <!-- Orta Menü -->
-            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-600" aria-label="Ana Menü">
-                <a href="{{ route('home') }}#hizmetler" class="hover:text-blue-600 transition">Hizmetlerimiz</a>
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-slate-600" aria-label="Ana Menü">
+                <!-- Hizmetlerimiz Dropdown -->
+                <div class="relative group">
+                    <button type="button" class="flex items-center gap-1.5 hover:text-blue-600 py-2 transition outline-hidden">
+                        <span>Hizmetlerimiz</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:rotate-180 transition transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                        <a href="{{ route('service.ip') }}" class="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 hover:text-blue-600 transition">
+                            <span class="font-bold text-xs text-slate-900">IP Kamera Sistemleri</span>
+                            <span class="text-[11px] text-slate-500 font-normal">4K PoE & Gece Renkli Akıllı Sistemler</span>
+                        </a>
+                        <a href="{{ route('service.solar') }}" class="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 hover:text-blue-600 transition">
+                            <span class="font-bold text-xs text-slate-900">4G Solar Güneş Enerjili Kamera</span>
+                            <span class="text-[11px] text-slate-500 font-normal">Elektriksiz ve İnternetsiz Tarla Kameraları</span>
+                        </a>
+                        <a href="{{ route('service.installation') }}" class="flex flex-col p-2.5 rounded-xl hover:bg-slate-50 hover:text-blue-600 transition">
+                            <span class="font-bold text-xs text-slate-900">Kamera Montajı & Arıza Servisi</span>
+                            <span class="text-[11px] text-slate-500 font-normal">Kanal İçi Gizli Kablolama & Tamir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hizmet Bölgeleri Dropdown -->
+                <div class="relative group">
+                    <button type="button" class="flex items-center gap-1.5 hover:text-blue-600 py-2 transition outline-hidden">
+                        <span>Hizmet Bölgelerimiz</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:rotate-180 transition transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute top-full -left-20 w-[420px] bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 px-1">Hatay Gezici Servis Noktalarımız</span>
+                        <div class="grid grid-cols-2 gap-1 text-xs">
+                            @foreach(config('camera_site.districts', []) as $d)
+                            <a href="{{ route('district.slug', ['slug' => $d['slug']]) }}" class="p-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 font-medium text-slate-700 transition flex items-center justify-between">
+                                <span>{{ $d['name'] }}</span>
+                                <span class="text-[10px] text-slate-400">Keşif</span>
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
                 <a href="{{ route('home') }}#paketler" class="hover:text-blue-600 transition">Kamera Setleri</a>
                 <a href="{{ route('home') }}#hesaplayici" class="hover:text-blue-600 transition">Fiyat Hesapla</a>
-                <a href="{{ route('home') }}#bolgeler" class="hover:text-blue-600 transition">Hizmet Bölgeleri</a>
                 <a href="{{ route('home') }}#sss" class="hover:text-blue-600 transition">S.S.S.</a>
             </nav>
 
@@ -181,6 +293,28 @@
                     </div>
                 </div>
 
+                <!-- Özel Hizmetlerimiz -->
+                <div class="lg:col-span-3">
+                    <h3 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                        Uzmanlık Alanlarımız
+                    </h3>
+                    <div class="space-y-2 text-xs">
+                        <a href="{{ route('service.ip') }}" class="block text-slate-400 hover:text-white transition py-1">
+                            › IP & PoE Kamera Kurulumu
+                        </a>
+                        <a href="{{ route('service.solar') }}" class="block text-slate-400 hover:text-white transition py-1">
+                            › 4G Solar Tarla Kameraları
+                        </a>
+                        <a href="{{ route('service.installation') }}" class="block text-slate-400 hover:text-white transition py-1">
+                            › Kamera Montajı & Arıza Servisi
+                        </a>
+                        <a href="{{ route('home') }}#hesaplayici" class="block text-slate-400 hover:text-white transition py-1">
+                            › Canlı Maliyet Hesaplama Robotu
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Hatay Hizmet Bölgeleri -->
                 <div class="lg:col-span-5">
                     <h3 class="text-white font-bold text-sm mb-4 flex items-center gap-2">
@@ -199,28 +333,6 @@
                     <p class="mt-4 text-[11px] text-slate-500">
                         * Dörtyol, Payas, Erzin, İskenderun ve tüm Hatay ilçelerine aynı gün ücretsiz yerinde keşif yapılmaktadır.
                     </p>
-                </div>
-
-                <!-- İletişim & Çağrı -->
-                <div class="lg:col-span-3">
-                    <h3 class="text-white font-bold text-sm mb-3">Hızlı Destek & Fiyat</h3>
-                    <p class="text-xs text-slate-400 mb-4">
-                        Projeleriniz ve keşif randevusu için ustalarımızla doğrudan görüşün.
-                    </p>
-                    <div class="space-y-2.5">
-                        <a href="tel:{{ config('camera_site.phone') }}" 
-                           onclick="trackConversionCall('footer')"
-                           class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-xs transition">
-                            📞 {{ config('camera_site.phone') }}
-                        </a>
-                        <a href="https://wa.me/{{ config('camera_site.whatsapp') }}?text={{ urlencode(config('camera_site.whatsapp_default_message')) }}" 
-                           target="_blank"
-                           rel="noopener"
-                           onclick="trackConversionWhatsApp('footer')"
-                           class="block w-full text-center bg-slate-900 hover:bg-slate-850 text-emerald-400 border border-slate-800 font-bold py-2.5 px-4 rounded-xl text-xs transition">
-                            💬 WhatsApp Keşif Talebi
-                        </a>
-                    </div>
                 </div>
 
             </div>

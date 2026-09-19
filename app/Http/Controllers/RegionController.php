@@ -35,6 +35,7 @@ class RegionController extends Controller
             'company' => $company,
             'pageTitle' => $district['title'].' | '.$company['short_name'],
             'metaDescription' => $district['meta_desc'],
+            'faqs' => $district['faq'] ?? [],
         ]);
     }
 }
