@@ -26,6 +26,8 @@ class HomePageTest extends TestCase
         $response->assertSee('HEMEN ARA');
         $response->assertSee('Kamera Setleri');
         $response->assertSee('SecuritySystemInstaller');
+        $response->assertSee('google.com/maps/embed');
+        $response->assertSee('camera-hero.webp');
     }
 
     /**

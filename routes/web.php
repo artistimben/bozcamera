@@ -20,6 +20,12 @@ Route::get('/ip-kamera-sistemleri', fn () => app(ServiceController::class)->show
 Route::get('/solar-kamera-sistemleri', fn () => app(ServiceController::class)->show('solar-kamera-sistemleri'))->name('service.solar');
 Route::get('/guvenlik-kamerasi-montaji', fn () => app(ServiceController::class)->show('guvenlik-kamerasi-montaji'))->name('service.installation');
 
+// Hizmet Sayfaları SEO Yönlendirmeleri (Aliases)
+Route::redirect('/ip-kamera-kurulumu', '/ip-kamera-sistemleri', 301);
+Route::redirect('/solar-kamera-kurulumu', '/solar-kamera-sistemleri', 301);
+Route::redirect('/kamera-montaji', '/guvenlik-kamerasi-montaji', 301);
+Route::redirect('/kamera-kurulumu', '/guvenlik-kamerasi-montaji', 301);
+
 // Müşteri Teklif ve Arama Talepleri
 Route::post('/teklif-al', [LeadController::class, 'store'])->name('lead.store');
 Route::post('/api/call-click', [LeadController::class, 'logCallClick'])->name('lead.call-click');
@@ -28,6 +34,10 @@ Route::post('/api/call-click', [LeadController::class, 'logCallClick'])->name('l
 Route::get('/{slug}-guvenlik-kamerasi', [RegionController::class, 'show'])
     ->where('slug', '[a-zA-Z0-9_\-]+')
     ->name('district.slug');
+Route::get('/{slug}-kamera-sistemleri', [RegionController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9_\-]+');
+Route::get('/{slug}-kamera-montaji', [RegionController::class, 'show'])
+    ->where('slug', '[a-zA-Z0-9_\-]+');
 Route::get('/hatay/{slug}', [RegionController::class, 'show'])->name('district.show');
 
 // Dinamik XML Sitemap (Google ve Arama Motorları İçin)

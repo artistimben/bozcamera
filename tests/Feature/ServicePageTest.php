@@ -68,4 +68,19 @@ class ServicePageTest extends TestCase
         $response->assertSee('/dortyol-guvenlik-kamerasi');
         $response->assertSee('/iskenderun-guvenlik-kamerasi');
     }
+
+    /**
+     * Test service URL aliases redirect with 301.
+     */
+    public function test_service_aliases_redirect(): void
+    {
+        $response = $this->get('/ip-kamera-kurulumu');
+        $response->assertRedirect('/ip-kamera-sistemleri');
+
+        $response2 = $this->get('/solar-kamera-kurulumu');
+        $response2->assertRedirect('/solar-kamera-sistemleri');
+
+        $response3 = $this->get('/kamera-montaji');
+        $response3->assertRedirect('/guvenlik-kamerasi-montaji');
+    }
 }

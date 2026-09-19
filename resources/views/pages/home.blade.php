@@ -607,6 +607,85 @@
     </div>
 </section>
 
+<!-- GOOGLE HARİTALAR & MERKEZ İLETİŞİM (LOCAL SEO & NAP BİREBİR EŞLEŞTİRME) -->
+<section id="harita" class="py-20 bg-slate-50/70 border-t border-slate-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Sol Kolon: Resmi İşletme (NAP) Kartı -->
+            <div class="lg:col-span-5">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    Google İşletme Profili & Konum
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-950 mt-3 mb-4 tracking-tight">
+                    Merkezimiz Dörtyol'da, Tüm Hatay'a Gezici Servis
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                    Boztech Bilişim olarak Dörtyol merkez ofisimizden tüm Hatay ilçelerine tam donanımlı gezici servis araçlarımızla aynı gün keşif, montaj ve teknik destek sağlıyoruz.
+                </p>
+
+                <!-- NAP Bilgileri -->
+                <div class="space-y-3 text-xs sm:text-sm mb-6">
+                    <div class="flex items-start gap-3 p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                        <span class="text-blue-600 font-bold text-lg">📍</span>
+                        <div>
+                            <strong class="text-slate-900 block font-bold">Resmi Adres:</strong>
+                            <span class="text-slate-600">{{ config('camera_site.address_text') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                        <span class="text-emerald-600 font-bold text-lg">📞</span>
+                        <div>
+                            <strong class="text-slate-900 block font-bold">Müşteri Destek & Sipariş:</strong>
+                            <a href="tel:{{ config('camera_site.phone') }}" class="text-blue-600 hover:underline font-bold">{{ config('camera_site.phone') }}</a>
+                            <span class="text-slate-400 block text-xs">(08:30 - 20:30 Her Gün Açık)</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-3.5 bg-white rounded-2xl border border-slate-200/80 shadow-2xs">
+                        <span class="text-amber-500 font-bold text-lg">🚐</span>
+                        <div>
+                            <strong class="text-slate-900 block font-bold">Gezici Servis Ağı:</strong>
+                            <span class="text-slate-600">Dörtyol, İskenderun, Payas, Erzin, Antakya, Defne, Arsuz ve tüm ilçeler</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="https://maps.google.com/?q=Dörtyol,Hatay" 
+                       target="_blank" 
+                       rel="noopener"
+                       class="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-600 text-white font-bold px-6 py-3.5 rounded-xl text-xs transition">
+                        <span>🗺️ Google Haritada Aç & Yol Tarifi</span>
+                    </a>
+                    <a href="tel:{{ config('camera_site.phone') }}" 
+                       class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 font-bold px-5 py-3.5 rounded-xl text-xs transition">
+                        <span>Hemen Arayın</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sağ Kolon: Google Harita Embed -->
+            <div class="lg:col-span-7">
+                <div class="w-full h-[360px] sm:h-[420px] rounded-3xl overflow-hidden border border-slate-200/80 shadow-xl shadow-slate-200/50 bg-slate-100">
+                    <iframe 
+                        title="Boztech Bilişim Güvenlik Sistemleri Dörtyol Hatay Harita Konumu"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51080.39572455964!2d36.195078!3d36.853245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152f205c08ab5fa1%3A0x8e83cb2b118b87c7!2zRMO2cnR5b2wsIEhhdGF5!5e0!3m2!1str!2str!4v1710850000000!5m2!1str!2str" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- ALT DÖNÜŞÜM ÇAĞRISI (Arama Aksiyonu) -->
 <section class="bg-slate-950 text-white py-16 sm:py-20 relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

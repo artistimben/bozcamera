@@ -40,6 +40,22 @@ class DistrictSeoTest extends TestCase
     }
 
     /**
+     * Test district URL variation aliases like -kamera-sistemleri.
+     */
+    public function test_district_url_variation_aliases_work(): void
+    {
+        $this->seed();
+
+        $response = $this->get('/dortyol-kamera-sistemleri');
+        $response->assertStatus(200);
+        $response->assertSee('Dörtyol');
+
+        $response2 = $this->get('/iskenderun-kamera-montaji');
+        $response2->assertStatus(200);
+        $response2->assertSee('İskenderun');
+    }
+
+    /**
      * Test invalid district redirects to home.
      */
     public function test_invalid_district_redirects_to_home(): void
